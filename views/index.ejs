@@ -14,7 +14,8 @@
             height: 100%;
             text-align: center;
         }
-        .wrapper{
+
+        .wrapper {
             position: relative;
         }
 
@@ -27,7 +28,8 @@
             z-index: 100;
             display: block;
         }
-        .know-button{
+
+        /*.know-button{
             margin-top: 100px!important;
             position: fixed;
             text-align: center;
@@ -48,10 +50,10 @@
             border-radius: 19px;
             padding: 9px;
             margin-bottom: 10px;
-        }
+        }*/
 
 
-        .model-wrapper{
+        /*.model-wrapper{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -69,33 +71,64 @@
             display: flex;
             align-items: center;
             height: 80vh;
+        }*/
+
+        #model {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            z-index: -1;
+            top: 80px;
         }
+
+        div .b {
+            display: inline-block;
+            
+        }
+     
+       
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="top">
+    <div class="top">
+        <div class="b">
+            <button>rotate</button>
+        </div>
+        <div class="b">
             <h1>3D Model of a Shoulder Bone</h1>
-    
         </div>
-    
+        <div class="b">
+            <div class="c">
+                <button>know</button>
+            </div>
         
-        <div class="modal-wrapper">
-            <div id="model" class="model-class">
-        
-            </div> 
         </div>
+
+
     </div>
-        <div class="know-button">
-            
-            <a href=""><button>Know More</button></a>
-        </div>
 
+    <canvas id="model" class="model-class"></canvas>
 
-      
-
+   
     
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="http://threejs.org/build/three.min.js"></script>
 
@@ -106,17 +139,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
+        var renderer, mesh;
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x121212)
 
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
         camera.position.set(0, 0, -300);
 
-        const renderer = new THREE.WebGLRenderer();
+
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('model') });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        var container = document.getElementById("model"); //1
-        document.body.appendChild(container);
-        container.appendChild(renderer.domElement);
+        //var container = document.getElementById("model"); //1
+        //document.body.appendChild(container);
+        //container.appendChild(renderer.domElement);
+
+
+
+
         //document.body.appendChild(renderer.domElement);
 
         window.addEventListener('resize', function () {
@@ -128,6 +167,8 @@
         })
 
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.minDistance = 200
+        controls.maxDistance = 300
         controls.update();
 
         //const geometry = new THREE.BoxGeometry();
@@ -147,8 +188,9 @@
         loader.load('/Shoulder_Bone.stl', function (geometry) {
             var material = new THREE.MeshPhongMaterial({ color: 0xe3dac9 });
 
-            var mesh = new THREE.Mesh(geometry, material);
+            mesh = new THREE.Mesh(geometry, material);
             mesh.position.set(50, -70, 750)
+           
             scene.add(mesh);
 
         });
@@ -158,13 +200,16 @@
 
         function animate() {
             requestAnimationFrame(animate);
+
+           
+            
             renderer.render(scene, camera);
             controls.update();
 
         }
         animate();
     </script>
-    
+
 
 
 </body>
