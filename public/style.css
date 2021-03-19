@@ -1,0 +1,118 @@
+body {
+    font-family: Monospace;
+    
+    margin: 0px;
+    overflow: hidden;
+
+    text-align: center;
+    color: white;
+}
+
+
+
+.header{
+    
+    background-color: aqua;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 50px;
+}
+.canva{
+    
+    background-color: aquamarine;
+    
+    width: 55%;
+}
+.content{
+    
+    background-color: bisque;
+    
+    width: 45%;
+}
+.footer{
+    
+    background-color: blue;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    
+   }
+
+.fl-box{
+    display: flex;
+    
+}
+
+canvas{
+    width: 100%;
+    height: 100%;
+}
+
+/*.top {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display: block;
+}*/
+
+/*.know-button{
+    margin-top: 100px!important;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 20px;
+    background-color: antiquewhite;
+    padding-top: 9px;
+    z-index: 100;
+    
+}
+
+.know-button button{
+    text-decoration: none;
+    color: skyblue;
+    font-size: 18px;
+    background-color: #121212;
+    border: 1px solid skyblue;
+    border-radius: 19px;
+    padding: 9px;
+    margin-bottom: 10px;
+}*/
+
+
+/*.model-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    position: relative;
+    bottom: 0;
+}
+
+
+.model-class{
+    position: absolute;
+    top: 120px;
+    margin-top:20px;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    height: 80vh;
+}*/
+
+/*#model {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: -1;
+    top: 80px;
+}
+
+div .b {
+    display: inline-block;
+    
+}*/

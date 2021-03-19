@@ -5,115 +5,43 @@
     <title>3D Shoulder Bone</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        body {
-            font-family: Monospace;
-            background-color: #121212;
-            margin: 0px;
-            overflow: hidden;
-            height: 100%;
-            text-align: center;
-        }
-
-        .wrapper {
-            position: relative;
-        }
-
-        .top {
-            color: #fff;
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            text-align: center;
-            z-index: 100;
-            display: block;
-        }
-
-        /*.know-button{
-            margin-top: 100px!important;
-            position: fixed;
-            text-align: center;
-            width: 100%;
-            bottom: 20px;
-            background-color: antiquewhite;
-            padding-top: 9px;
-            z-index: 100;
-            
-        }
-
-        .know-button button{
-            text-decoration: none;
-            color: skyblue;
-            font-size: 18px;
-            background-color: #121212;
-            border: 1px solid skyblue;
-            border-radius: 19px;
-            padding: 9px;
-            margin-bottom: 10px;
-        }*/
-
-
-        /*.model-wrapper{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: -1;
-            position: relative;
-            bottom: 0;
-        }
-
-
-        .model-class{
-            position: absolute;
-            top: 120px;
-            margin-top:20px;
-            z-index: -1;
-            display: flex;
-            align-items: center;
-            height: 80vh;
-        }*/
-
-        #model {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            z-index: -1;
-            top: 80px;
-        }
-
-        div .b {
-            display: inline-block;
-            
-        }
-     
-       
-    </style>
+    <Link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
 <body>
-    <div class="wrapper">
-    <div class="top">
-        <div class="b">
-            <button>rotate</button>
+
+    <div class="container">
+        <div class="header">
+            3d model
         </div>
-        <div class="b">
-            <h1>3D Model of a Shoulder Bone</h1>
-        </div>
-        <div class="b">
-            <div class="c">
-                <button>know</button>
-            </div>
-        
-        </div>
-
-
-    </div>
-
-    <canvas id="model" class="model-class"></canvas>
-
-   
+        <div class="fl-box">
+            <div class="canva" id="canva">
+                <script src="http://threejs.org/build/three.min.js"></script>
     
+                <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
+    
+                <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+                <canvas id="model">
+    
+                </canvas>
+    
+    
+    
+            </div>
+            <div class="content">
+                Lorem Ipsum<br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum.
+            </div>
+        </div>
+        
+        <div class="footer">
 
+        </div>
     </div>
 
 
@@ -130,26 +58,27 @@
 
 
 
-    <script src="http://threejs.org/build/three.min.js"></script>
 
-    <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
 
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script>
         var renderer, mesh;
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x121212)
+        //scene.background = new THREE.Color(0xcfcfcc)
 
-        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
+        //const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const camera = new THREE.PerspectiveCamera(50, document.getElementById('canva').clientWidth / document.getElementById('canva').clientHeight, 0.1, 2000);
         camera.position.set(0, 0, -300);
         //camera.position.set(0,0,-70)
 
 
         renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('model') });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        //renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(document.getElementById('canva').clientWidth, document.getElementById('canva').clientHeight);
         //var container = document.getElementById("model"); //1
         //document.body.appendChild(container);
         //container.appendChild(renderer.domElement);
@@ -191,7 +120,7 @@
 
             mesh = new THREE.Mesh(geometry, material);
             mesh.position.set(50, -70, 750)
-           //mesh.position.set(50,-70,600)
+            //mesh.position.set(50,-70,600)
             scene.add(mesh);
 
         });
@@ -202,15 +131,14 @@
         function animate() {
             requestAnimationFrame(animate);
 
-           
-            
+
+
             renderer.render(scene, camera);
             controls.update();
 
         }
         animate();
     </script>
-
 
 
 </body>
