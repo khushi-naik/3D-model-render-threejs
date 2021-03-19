@@ -5,6 +5,13 @@
     <title>3D Shoulder Bone</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Unicase:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <Link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
@@ -12,52 +19,39 @@
 
     <div class="container">
         <div class="header">
-            3d model
+            <h1>3D Model - Shoulder Bone</h1>
         </div>
         <div class="fl-box">
             <div class="canva" id="canva">
+
                 <script src="http://threejs.org/build/three.min.js"></script>
-    
+
                 <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
-    
+
                 <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+                
                 <canvas id="model">
-    
+
                 </canvas>
-    
-    
-    
+
             </div>
             <div class="content">
-                Lorem Ipsum<br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                laborum.
+
+                <div class="fact">
+                    <h2 id="fact">The shoulder complex, composed of the clavicle, scapula, and humerus, is an
+                        intricately designed combination of four joints.</h2>
+                </div>
+                <div class="inst">
+                    <h4>Click and drag on the bone to rotate.</h4>
+                </div>
+
             </div>
         </div>
-        
-        <div class="footer">
 
+        <div class="footer">
+            <p>designed and created by <strong>Khushi</strong></p>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -68,25 +62,18 @@
     <script>
         var renderer, mesh;
         const scene = new THREE.Scene();
-        //scene.background = new THREE.Color(0xcfcfcc)
+        scene.background = new THREE.Color(0x121212)
 
         //const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
         const camera = new THREE.PerspectiveCamera(50, document.getElementById('canva').clientWidth / document.getElementById('canva').clientHeight, 0.1, 2000);
-        camera.position.set(0, 0, -300);
-        //camera.position.set(0,0,-70)
+        //camera.position.set(0, 0, -300);
+        camera.position.set(0, 0, 70)
 
 
         renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('model') });
         //renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setSize(document.getElementById('canva').clientWidth, document.getElementById('canva').clientHeight);
-        //var container = document.getElementById("model"); //1
-        //document.body.appendChild(container);
-        //container.appendChild(renderer.domElement);
-
-
-
-
-        //document.body.appendChild(renderer.domElement);
+        
 
         window.addEventListener('resize', function () {
             var width = window.innerWidth;
@@ -98,20 +85,17 @@
 
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.minDistance = 200
-        controls.maxDistance = 350
+        controls.maxDistance = 450
         controls.update();
 
-        //const geometry = new THREE.BoxGeometry();
-        //const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        //const cube = new THREE.Mesh(geometry, material);
-        //scene.add(cube);
+        
 
         const alight = new THREE.AmbientLight(0xe3dac9); // soft white light
         scene.add(alight);
 
 
         var light = new THREE.PointLight(0xf5c693, 0.8);
-        light.position.set(0, 0, -70)
+        light.position.set(0, 0, 70)
         scene.add(light)
 
         var loader = new THREE.STLLoader();
@@ -120,7 +104,7 @@
 
             mesh = new THREE.Mesh(geometry, material);
             mesh.position.set(50, -70, 750)
-            //mesh.position.set(50,-70,600)
+            //mesh.position.set(0,0,0)
             scene.add(mesh);
 
         });
@@ -131,15 +115,50 @@
         function animate() {
             requestAnimationFrame(animate);
 
-
-
             renderer.render(scene, camera);
             controls.update();
 
         }
         animate();
     </script>
+    <script>
+        var q = ['The shoulder is more dependent on muscles than any other joint in the body. The shoulder is the most mobile joint in the body.', 'The anatomy of the shoulder is unique – it has a relatively shallow socket which results in amazing flexibility and range of motion to the shoulder joint which is unparalleled elsewhere in the body.', 'The shoulder complex, composed of the clavicle, scapula, and humerus, is an intricately designed combination of four joints.']
 
+        $(document).ready(function () {
+            console.log("ready!");
+
+
+
+            var q1 = true, q2 = false, q3 = false;
+            setInterval(function () {
+
+                if (q1) {
+                    q1 = false;
+                    document.getElementById('fact').innerHTML = q[0];
+                    document.getElementById('fact').style.color = 'white'
+                    q2 = true;
+                }
+                else if (q2) {
+                    q2 = false;
+                    document.getElementById('fact').innerHTML = q[1];
+                    document.getElementById('fact').style.color = 'white'
+                    q3 = true;
+                }
+                else {
+                    q3 = false;
+                    document.getElementById('fact').innerHTML = q[2];
+                    document.getElementById('fact').style.color = 'white'
+                    q1 = true;
+                }
+            }, 4000);
+
+        });
+
+
+
+
+
+    </script>
 
 </body>
 
