@@ -60,8 +60,9 @@ canvas{
 }
 
 #fact{
-    color: white;
+    color: rgb(218, 216, 216);
     font-family: 'Anton', sans-serif;
+    letter-spacing: 0.02rem;
 }
 
 .fact{
